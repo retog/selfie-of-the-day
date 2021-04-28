@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width,initial-scale=1'>
+
+	<title>My PatchBoot App</title>
+
+	<link rel='icon' type='image/png' href='/favicon.png'>
+	<link rel='stylesheet' href='/global.css'>
+</head>
+<body>
+
+  <h1>PatchBoot example app</h1>
+
+  <p>A PatchBoot App can be run in the browser by using the <a href="https://github.com/retog/scuttle-shell-browser/">
+    Scuttle Shell Browser Add-On</a>.</p>
+
+  <div id="patchboot-app">
+    If Scuttle Shell Browser is installed correctly and activated for this page, the PatchBoot App will appear here.
+  </div>
+
+  
+
+<script type="module">
+  import {default as ssbConnnect, pull} from 'https://retog.github.io/scuttle-shell-browser/ssb-connect.js'
+  console.log('connecting',ssbConnnect)
+  ssbConnnect().then(sbot => {
+    window.sbot = sbot
+    window.root = document.getElementById('patchboot-app')
+    window.pull = pull
+    window.root.innerHTML = ''
+    const script = document.createElement('script')
+    script.defer = true
+    script.src = 'FeedApp.js'
+    document.head.append(script)
+  },
+  error => {
+    console.log('An error occured', error)
+  })
+
+</script>
+
+  wait wait
+</body>
+</html>
