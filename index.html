@@ -27,12 +27,12 @@
   console.log('connecting',ssbConnnect)
   ssbConnnect().then(sbot => {
     window.sbot = sbot
-    window.root = document.getElementById('patchboot-app')
+    window.root = document.getElementById('patchboot-app').attachShadow({'mode': 'open'})
     window.pull = pull
     window.root.innerHTML = ''
     const script = document.createElement('script')
     script.defer = true
-    script.src = 'FeedApp.js'
+    script.src = 'SelfieApp.js'
     document.head.append(script)
   },
   error => {
@@ -41,6 +41,5 @@
 
 </script>
 
-  wait wait
 </body>
 </html>
