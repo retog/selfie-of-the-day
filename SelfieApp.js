@@ -1,4 +1,7 @@
-root.innerHTML = `
+const container = document.createElement("div")
+root.appendChild(container)
+const shadow = container.attachShadow({mode: 'closed'})
+shadow.innerHTML = `
 <p>Take a selfie an post it as a blob.</p>
 <div class="camera">
   <video id="video">Video stream not available.</video>
@@ -25,10 +28,10 @@ var photo = null;
 var startbutton = null;
 
 function startup() {
-  video = root.getElementById('video');
-  canvas = root.getElementById('canvas');
-  photo = root.getElementById('photo');
-  startbutton = root.getElementById('startbutton');
+  video = shadow.getElementById('video');
+  canvas = shadow.getElementById('canvas');
+  photo = shadow.getElementById('photo');
+  startbutton = shadow.getElementById('startbutton');
 
   navigator.mediaDevices.getUserMedia({ video: true, audio: false })
     .then(function (stream) {
@@ -78,7 +81,7 @@ function takepicture() {
         if (err) {
           console.log('err', err)
         } else {
-          root.getElementById('info').innerHTML = `
+          shadow.getElementById('info').innerHTML = `
           Created blob with id ${blobId}
           `
         }
